@@ -39,9 +39,9 @@ public class Main {
                     String search = scanner.nextLine();
                     Set<File> res = processor.query(search);
                     if(res.isEmpty()) {
-                        System.out.println("No files containing entered word found.");
+                        System.out.println("No files containing the specified word were found.");
                     } else {
-                        System.out.println("Files containing entered word: ");
+                        System.out.println("Files containing the word \"" + search + "\": ");
                         for(File found : res) {
                             System.out.println(found.toString());
                         }

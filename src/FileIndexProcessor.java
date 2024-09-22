@@ -11,15 +11,15 @@ public class FileIndexProcessor {
             indexDirectory(file);
             return;
         }
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        while((line = br.readLine()) != null) {
-            List<String> lineContent = tokenizer.tokenize(line);
-            for(String word: lineContent) {
-                index.computeIfAbsent(word.toLowerCase(), f -> new HashSet<>()).add(file);
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while((line = br.readLine()) != null) {
+                List<String> lineContent = tokenizer.tokenize(line);
+                for(String word: lineContent) {
+                    index.computeIfAbsent(word.toLowerCase(), f -> new HashSet<>()).add(file);
+                }
             }
         }
-        br.close();
     }
 
     private void indexDirectory(File dir) throws IOException {
