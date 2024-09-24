@@ -1,9 +1,11 @@
+package main;
+
 import java.io.*;
 import java.util.*;
 
 public class FileIndexProcessor {
 
-    public Map<String, Set<File>> index = new HashMap<>();
+    private Map<String, Set<File>> index = new HashMap<>();
     private final Tokenizer tokenizer = (line) -> Arrays.asList(line.split("\\W+"));
 
     public void indexFile(File file) throws IOException {
@@ -25,7 +27,6 @@ public class FileIndexProcessor {
     private void indexDirectory(File dir) throws IOException {
         File[] files = dir.listFiles();
         if(files != null) {
-            String line;
             for (File file : files) {
                 if(file.isDirectory()) {
                     indexDirectory(file);
@@ -38,5 +39,9 @@ public class FileIndexProcessor {
 
     public Set<File> query(String search) {
         return index.getOrDefault(search.toLowerCase(), new HashSet<>());
+    }
+
+    public Map<String, Set<File>> getIndex() {
+        return index;
     }
 }

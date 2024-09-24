@@ -1,10 +1,11 @@
+package main;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         FileIndexProcessor processor = new FileIndexProcessor();
 
@@ -25,7 +26,6 @@ public class Main {
                         try {
                             processor.indexFile(file);
                             System.out.println("File successfully indexed.");
-                            System.out.println(processor.index.toString());
                         } catch(Exception ex) {
                             System.out.println(ex.getMessage());
                         }
@@ -35,7 +35,7 @@ public class Main {
                     break;
 
                 case "query":
-                    System.out.println("Enter word for search: ");
+                    System.out.println("Enter word for search (not case sensitive): ");
                     String search = scanner.nextLine();
                     Set<File> res = processor.query(search);
                     if(res.isEmpty()) {
@@ -43,7 +43,7 @@ public class Main {
                     } else {
                         System.out.println("Files containing the word \"" + search + "\": ");
                         for(File found : res) {
-                            System.out.println(found.toString());
+                            System.out.println(found.getName());
                         }
                     }
                     break;
