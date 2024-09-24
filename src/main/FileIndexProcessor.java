@@ -16,11 +16,13 @@ public class FileIndexProcessor {
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while((line = br.readLine()) != null) {
-                List<String> lineContent = tokenizer.tokenize(line);
-                for(String word: lineContent) {
+                List<String> words = tokenizer.tokenize(line);
+                for(String word: words) {
                     index.computeIfAbsent(word.toLowerCase(), f -> new HashSet<>()).add(file);
                 }
             }
+        } catch(IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -38,7 +40,7 @@ public class FileIndexProcessor {
     }
 
     public Set<File> query(String search) {
-        return index.getOrDefault(search.toLowerCase(), new HashSet<>());
+        return index.getOrDefault(search.toLowerCase(), Collections.emptySet());
     }
 
     public Map<String, Set<File>> getIndex() {
