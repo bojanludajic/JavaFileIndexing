@@ -7,7 +7,7 @@ This application allows you to index `.txt` files and directories, and then quer
 ## Features
 
 - **Indexing**: Index individual `.txt` files or entire directories.
-- **Querying**: Search for specific words in the indexed files.
+- **Querying**: Search for specific words in the indexed files. Search results are case insensitive.
 
 ## Usage
 
