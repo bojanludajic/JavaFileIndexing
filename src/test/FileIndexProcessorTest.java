@@ -52,15 +52,17 @@ class FileIndexProcessorTest {
             writer.write("Second example text for testing purposes.");
         }
 
-        processor.indexFile(testDir);
-        Set<File> files = processor.getIndex().get("text");
+        try {
+            processor.indexFile(testDir);
+            Set<File> files = processor.getIndex().get("text");
 
-        assertTrue(files.contains(file1));
-        assertTrue(files.contains(file2));
-
-        file2.delete();
-        file1.delete();
-        testDir.delete();
+            assertTrue(files.contains(file1));
+            assertTrue(files.contains(file2));
+        } finally {
+            file2.delete();
+            file1.delete();
+            testDir.delete();
+        }
     }
 
     @Test
