@@ -28,7 +28,7 @@ class FileIndexProcessorTest {
     }
 
     @AfterEach
-    void deleteFiles() {
+    void clearFile() {
         testFile.delete();
     }
 
@@ -51,7 +51,6 @@ class FileIndexProcessorTest {
         try(FileWriter writer = new FileWriter(file2)) {
             writer.write("Second example text for testing purposes.");
         }
-
         try {
             processor.indexFile(testDir);
             Set<File> files = processor.getIndex().get("text");
