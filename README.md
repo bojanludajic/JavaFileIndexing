@@ -1,6 +1,6 @@
 # File Indexing Application
 
-Solution for a JetBrains Intership 2025 task (GoLand onboarding experience).<br>
+Solution for a JetBrains Internship 2025 task (GoLand onboarding experience).<br>
 This application allows you to index `.txt` files and directories, and then query the indexed files for specific words.<br>
 **Note**: All filles will be processed to extract a list of words based on the following regex: `"\\W+"`. This regex effectively splits text into words while ignoring punctuation marks, special characters and whitespace. Words in this context are defined as a sequence of letters and digits, so any characters that are not part of this set will be used as delimiters.
 
